@@ -22,7 +22,9 @@ class MyApp extends StatelessWidget {
           title: Text('Aquí todos son widgets oiga ._.'),
         ),
         /* Para la parte central de la aplicación */
-        body: Center(),
+        body: Row(
+          children: [Text("Hola mundo!"), TextField()],
+        ),
       ),
     );
   }
