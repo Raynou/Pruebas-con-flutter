@@ -23,9 +23,47 @@ class MyApp extends StatelessWidget {
         ),
         /* Para la parte central de la aplicación */
         body: Center(
-          child: TextField(),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: <Widget>[
+              Text("Hola Mundo"),
+              TextField(),
+              ElevatedButton(
+                  onPressed: () {
+                    final snackBar = SnackBar(
+                      content: Text('Yay! A SnackBar!'),
+                      action: SnackBarAction(
+                        label: 'Undo',
+                        onPressed: () {
+                          // Some code to undo the change.
+                        },
+                      ),
+                    );
+                    ScaffoldMessenger.of(context).showSnackBar(snackBar);
+                  },
+                  child: Text("Aún más kola")),
+              Text("Olee")
+            ],
+          ),
         ),
       ),
     );
   }
 }
+
+/* Ejemplo: 
+
+body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            Text(
+              'You have pushed the button this many times:',
+            ),
+            Text(
+              '$_counter',
+              style: Theme.of(context).textTheme.headline4,
+            ),
+          ],
+        ),
+       */
