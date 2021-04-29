@@ -13,16 +13,55 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: "Kola",
-      //Este va a ser el widget que toma toda la pantalla de la aplicación
-      home: Scaffold(
-        /* Widget del appbar */
-        appBar: AppBar(
-          /* Los parámetros van acá */
-          title: Text('Aquí todos son widgets oiga ._.'),
-        ),
-        /* Para la parte central de la aplicación */
-        body: Center(
+        title: "Kola",
+        //Este va a ser el widget que toma toda la pantalla de la aplicación
+        home: Scaffold(
+          /* Widget del appbar */
+          appBar: AppBar(
+            /* Los parámetros van acá */
+            title: Text('Aquí todos son widgets oiga ._.'),
+          ),
+          body: MyClassModel(),
+          /* Para la parte central de la aplicación */
+        ));
+  }
+}
+
+class MyClassModel extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Center(
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.start,
+        children: <Widget>[
+          Text("Hola Mundo"),
+          TextField(),
+          ElevatedButton(
+              onPressed: () {
+                final snackBar = SnackBar(
+                  content: Text('Aún más kola'),
+                  action: SnackBarAction(
+                    label: 'Cerrar',
+                    onPressed: () {
+                      // Some code to undo the change.
+                    },
+                  ),
+                );
+                ScaffoldMessenger.of(context).showSnackBar(snackBar);
+              },
+              child: Text("Más kola")),
+          Image.network('https://fondosmil.com/fondo/17009.jpg',
+              loadingBuilder: (context, child, loadingProgress) {
+            return loadingProgress == null
+                ? child
+                : CircularProgressIndicator();
+          })
+        ],
+      ),
+    );
+  }
+
+  /* body: Center(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.start,
             children: <Widget>[
@@ -46,9 +85,8 @@ class MyApp extends StatelessWidget {
             ],
           ),
         ),
-      ),
-    );
-  }
+      ) */
+
 }
 
 /* Ejemplo: 
@@ -67,3 +105,47 @@ body: Center(
           ],
         ),
        */
+
+/* Mira como esta en el ejemplo de google para mostrar un snackbar: 
+
+class SnackBarDemo extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: 'SnackBar Demo',
+      home: Scaffold(
+        appBar: AppBar(
+          title: Text('SnackBar Demo'),
+        ),
+        body: SnackBarPage(),
+      ),
+    );
+  }
+}
+
+class SnackBarPage extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Center(
+      child: ElevatedButton(
+        onPressed: () {
+          final snackBar = SnackBar(
+            content: Text('Yay! A SnackBar!'),
+            action: SnackBarAction(
+              label: 'Undo',
+              onPressed: () {
+                // Some code to undo the change.
+              },
+            ),
+          );
+
+          // Find the ScaffoldMessenger in the widget tree
+          // and use it to show a SnackBar.
+          ScaffoldMessenger.of(context).showSnackBar(snackBar);
+        },
+        child: Text('Show SnackBar'),
+      ),
+    );
+  }
+}
+ */
