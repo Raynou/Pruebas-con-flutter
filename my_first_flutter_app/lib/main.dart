@@ -37,13 +37,8 @@ class MyClassModel extends StatelessWidget {
         children: <Widget>[
           Text("Hola Mundo"),
           TextField(),
+          MyImage(),
           MyElevatedButton(),
-          Image.network('https://fondosmil.com/fondo/17009.jpg',
-              loadingBuilder: (context, child, loadingProgress) {
-            return loadingProgress == null
-                ? child
-                : CircularProgressIndicator();
-          }),
           MyText()
         ],
       ),
@@ -68,6 +63,16 @@ class MyElevatedButton extends StatelessWidget {
           ScaffoldMessenger.of(context).showSnackBar(snackBar);
         },
         child: Text("Más kola"));
+  }
+}
+
+class MyImage extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Image.network('https://fondosmil.com/fondo/17009.jpg',
+        loadingBuilder: (context, child, loadingProgress) {
+      return loadingProgress == null ? child : CircularProgressIndicator();
+    });
   }
 }
 
